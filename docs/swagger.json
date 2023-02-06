@@ -1,0 +1,277 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "使用者管理",
+        "title": "ichiban-kuji 模組",
+        "contact": {}
+    },
+    "paths": {
+        "/ichiban-kuji/": {
+            "post": {
+                "security": [
+                    {
+                        "Systoken": []
+                    }
+                ],
+                "summary": "建立一番賞",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "cost",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "name": "isLast",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "name": "lastType",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "name",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "name": "rewardCount",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "sellAt",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "userID",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/ichiban-kuji/reward/{ichibanKujiID}": {
+            "post": {
+                "security": [
+                    {
+                        "Systoken": []
+                    }
+                ],
+                "summary": "建立一番賞獎品",
+                "parameters": [
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "name": "description",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "name": "name",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/ichiban-kuji/{ichibanKujiID}": {
+            "patch": {
+                "security": [
+                    {
+                        "Systoken": []
+                    }
+                ],
+                "summary": "修改一番賞",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "cost",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "isLast",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "lastType",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "name",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "rewardCount",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "sellAt",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "status",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/ichiban-kuji/{ichibanKujiRewardID}": {
+            "patch": {
+                "security": [
+                    {
+                        "Systoken": []
+                    }
+                ],
+                "summary": "修改一番賞獎品內容",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "description",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "name",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "userID",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/ichiban-kuji/{userID}": {
+            "get": {
+                "security": [
+                    {
+                        "Systoken": []
+                    }
+                ],
+                "summary": "取得一番賞獎品列表",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": " ",
+                        "name": "userID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/domain.IchibanKuji"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "domain.IchibanKuji": {
+            "type": "object",
+            "properties": {
+                "cost": {
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "isLast": {
+                    "type": "integer"
+                },
+                "lastType": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rewardCount": {
+                    "type": "integer"
+                },
+                "sellAt": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "userID": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "Systoken": {
+            "type": "apiKey",
+            "name": "Systoken",
+            "in": "header"
+        }
+    }
+}

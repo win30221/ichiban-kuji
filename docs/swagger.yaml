@@ -1,0 +1,169 @@
+definitions:
+  domain.IchibanKuji:
+    properties:
+      cost:
+        type: integer
+      createdAt:
+        type: string
+      id:
+        type: integer
+      isLast:
+        type: integer
+      lastType:
+        type: integer
+      name:
+        type: string
+      rewardCount:
+        type: integer
+      sellAt:
+        type: string
+      status:
+        type: integer
+      updatedAt:
+        type: string
+      userID:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: 使用者管理
+  title: ichiban-kuji 模組
+paths:
+  /ichiban-kuji/:
+    post:
+      parameters:
+      - in: formData
+        name: cost
+        required: true
+        type: integer
+      - in: formData
+        name: isLast
+        required: true
+        type: integer
+      - in: formData
+        name: lastType
+        required: true
+        type: integer
+      - in: formData
+        name: name
+        required: true
+        type: string
+      - in: formData
+        name: rewardCount
+        required: true
+        type: integer
+      - in: formData
+        name: sellAt
+        required: true
+        type: string
+      - in: formData
+        name: userID
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      security:
+      - Systoken: []
+      summary: 建立一番賞
+  /ichiban-kuji/{ichibanKujiID}:
+    patch:
+      parameters:
+      - in: formData
+        name: cost
+        type: integer
+      - in: formData
+        name: isLast
+        type: integer
+      - in: formData
+        name: lastType
+        type: integer
+      - in: formData
+        name: name
+        type: string
+      - in: formData
+        name: rewardCount
+        type: integer
+      - in: formData
+        name: sellAt
+        type: string
+      - in: formData
+        name: status
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      security:
+      - Systoken: []
+      summary: 修改一番賞
+  /ichiban-kuji/{ichibanKujiRewardID}:
+    patch:
+      parameters:
+      - in: formData
+        name: description
+        type: string
+      - in: formData
+        name: name
+        type: string
+      - in: formData
+        name: userID
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      security:
+      - Systoken: []
+      summary: 修改一番賞獎品內容
+  /ichiban-kuji/{userID}:
+    get:
+      parameters:
+      - description: ' '
+        in: path
+        name: userID
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/domain.IchibanKuji'
+            type: array
+      security:
+      - Systoken: []
+      summary: 取得一番賞獎品列表
+  /ichiban-kuji/reward/{ichibanKujiID}:
+    post:
+      parameters:
+      - in: formData
+        items:
+          type: string
+        name: description
+        required: true
+        type: array
+      - in: formData
+        items:
+          type: string
+        name: name
+        required: true
+        type: array
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      security:
+      - Systoken: []
+      summary: 建立一番賞獎品
+securityDefinitions:
+  Systoken:
+    in: header
+    name: Systoken
+    type: apiKey
+swagger: "2.0"
